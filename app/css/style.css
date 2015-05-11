@@ -1,0 +1,24 @@
+#map {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        top: 0;
+        left: 0;
+        background-image: url("../img/background-01.jpg");
+        background-size: cover;
+      }
+      h1{
+        font-family: 'akzidenz', Helvetica, Arial, sans-serif;
+        font-size: 40px;
+        color: #000;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        position: absolute;
+        left: 50%;
+        bottom: 100px;
+        -webkit-transform: translate(-50%);
+        transform: translate(-50%);
+        z-index: 3;
+      }
