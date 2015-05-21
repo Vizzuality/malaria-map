@@ -1,24 +1,73 @@
 #map {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        top: 0;
-        left: 0;
-        background-image: url("../img/background-01.jpg");
-        background-size: cover;
-      }
-      h1{
-        font-family: 'akzidenz', Helvetica, Arial, sans-serif;
-        font-size: 40px;
-        color: #000;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        position: absolute;
-        left: 50%;
-        bottom: 100px;
-        -webkit-transform: translate(-50%);
-        transform: translate(-50%);
-        z-index: 3;
-      }
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+}
+
+h1 {
+  font-family: 'akzidenz', Helvetica, Arial, sans-serif;
+  font-size: 60px;
+  color: rgba(178, 18, 13, 0.9);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-transform: uppercase;
+
+  width: 340px;
+
+  position: absolute;
+  left: 35px;
+  top: 25px;
+
+  z-index: 3;
+}
+
+.leaflet-top.leaflet-right {
+  top: 25px;
+  right: 35px;
+}
+
+.leaflet-top.leaflet-left {
+  top: 165px;
+  left: 35px;
+}
+
+.leaflet-left .leaflet-control {
+  margin-left: 0;
+}
+
+.leaflet-bar {
+  box-shadow: none;
+  border: 1px solid rgba(120,116,113,0.8);
+  border-radius: 0;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background-color: transparent;
+  color: rgba(120,116,113,0.8);
+
+  border-bottom: 1px solid rgba(120,116,113,0.8);
+
+  line-height: 35px;
+  width: 35px;
+  height: 35px;
+}
+
+.leaflet-bar a:hover {
+  background-color: rgba(244,244,244,0.8);
+}
+
+.leaflet-bar a:last-child {
+  border-bottom: none;
+}
+
+.leaflet-control-layers-expanded {
+  background: transparent;
+  box-shadow: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
