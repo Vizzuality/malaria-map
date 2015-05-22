@@ -130,5 +130,6 @@
 }
 
 .leaflet-control-layers-selector:focus {
+  outline: none;
   -moz-outline-radius: 0;
 }
