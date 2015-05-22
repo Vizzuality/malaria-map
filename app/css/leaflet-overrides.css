@@ -79,7 +79,6 @@
 }
 
 .leaflet-control-layers-expanded label input[type="radio"]:checked ~ span:hover {
-  cursor: auto;
   color: #000;
 }
 
