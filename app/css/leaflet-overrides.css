@@ -45,8 +45,17 @@
   font-size: 20px;
 }
 
+.leaflet-control-layers-group-name {
+  height: 0;
+  border-top: 1px solid #ddd;
+  margin: 5px 0 15px 17px;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
 .leaflet-control-layers-separator {
-  margin: 15px 0 25px;
+  display: none;
 }
 
 .leaflet-control-layers-expanded label{
@@ -66,6 +75,7 @@
 .leaflet-control-layers-selector ~ span {
   color: #000;
   opacity: 0.3;
+  text-shadow: 0 0 2px white;
 }
 
 .leaflet-control-layers-expanded label span:hover,
