@@ -9,29 +9,32 @@
 }
 
 .leaflet-left .leaflet-control {
-  margin-left: 0;
+  margin-left: -12px;
+  margin-top: 70px;
+  padding: 0;
 }
 
 .leaflet-bar {
   box-shadow: none;
-  border: 1px solid rgba(120,116,113,0.8);
+  border: 1px solid #74716E;
   border-radius: 0;
 }
 
 .leaflet-bar a,
 .leaflet-bar a:hover {
   background-color: transparent;
-  color: rgba(120,116,113,0.8);
+  color: #74716E;
 
-  border-bottom: 1px solid rgba(120,116,113,0.8);
+  border-bottom: 1px solid #74716E;
 
+  font-size: 35px;
   line-height: 35px;
   width: 35px;
   height: 35px;
 }
 
 .leaflet-bar a:hover {
-  background-color: rgba(244,244,244,0.8);
+  background-color: #74716E;
 }
 
 .leaflet-bar a:last-child {
@@ -43,4 +46,72 @@
   box-shadow: none;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 20px;
+}
+
+.leaflet-control-layers-expanded label {
+  line-height: 18px;
+}
+
+.leaflet-control-layers-expanded label span:hover {
+  color: #AC2641;
+  cursor: pointer;
+}
+
+.leaflet-control-layers-expanded label input[type="radio"]:checked ~ span:hover {
+  cursor: auto;
+  color: #000;
+}
+
+.leaflet-control-layers-selector ~ span {
+  color: #000;
+  opacity: 0.3;
+}
+
+.leaflet-control-layers-expanded label span:hover,
+.leaflet-control-layers-selector:checked ~ span {
+  opacity: 1;
+}
+
+.leaflet-control-layers-selector {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  -moz-outline-radius: 0;
+}
+
+.leaflet-control-layers-selector:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  border: 1px solid rgba(120,116,113,0.3);
+  width: 4px;
+  height: 4px;
+}
+
+.leaflet-control-layers-selector:checked:after {
+  background-color: #000;
+}
+
+.leaflet-control-layers-selector[type="radio"]:after {
+  border-radius: 50%;
+}
+
+.leaflet-control-layers-selector:focus {
+  -moz-outline-radius: 0;
 }

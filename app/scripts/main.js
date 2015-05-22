@@ -28,6 +28,7 @@ LAYERS_CONFIG.overlays.forEach(function(layerConfig, index) {
   if (index === 0) { layer.addTo(map); }
 });
 
-L.control.layers(baseMaps, malariaLayers, {position: 'topleft', collapsed: false}).addTo(map);
+var layerControl = new L.Control.Layers(baseMaps, malariaLayers, {position: 'topleft', collapsed: false});
+layerControl.addTo(map);
 
 })();

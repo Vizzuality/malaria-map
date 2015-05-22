@@ -13,13 +13,13 @@
 }
 
 h1 {
-  font-size: 60px;
-  color: rgba(178, 18, 13, 0.9);
+  font-size: 122px;
+  color: #AC2641;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   text-transform: uppercase;
-
-  width: 340px;
+  line-height: 95px;
+  width: 360px;
 
   position: absolute;
   left: 35px;
