@@ -16,8 +16,9 @@
 
 .leaflet-bar {
   box-shadow: none;
-  border: 1px solid #74716E;
   border-radius: 0;
+  background: rgba(241,238,232,0.50);
+  border: 2px solid #74716E;
 }
 
 .leaflet-bar a,
@@ -25,16 +26,11 @@
   background-color: transparent;
   color: #74716E;
 
-  border-bottom: 1px solid #74716E;
+  border-bottom: 2px solid #74716E;
 
-  font-size: 35px;
   line-height: 35px;
   width: 35px;
   height: 35px;
-}
-
-.leaflet-bar a:hover {
-  background-color: #74716E;
 }
 
 .leaflet-bar a:last-child {
@@ -49,8 +45,12 @@
   font-size: 20px;
 }
 
-.leaflet-control-layers-expanded label {
-  line-height: 18px;
+.leaflet-control-layers-separator {
+  margin: 15px 0 25px;
+}
+
+.leaflet-control-layers-expanded label{
+  margin-top: -10px;
 }
 
 .leaflet-control-layers-expanded label span:hover {
