@@ -44,6 +44,10 @@
   opacity: 0.9;
 }
 
+.satellite-layer .leaflet-control-layers-list {
+  opacity: 0.6;
+}
+
 .leaflet-control-layers-expanded {
   background: transparent;
   box-shadow: none;
@@ -116,9 +120,13 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   background-color: transparent;
-  border: 1px solid rgba(120,116,113,0.3);
+  border: 1px solid rgba(120,116,113,0.6);
   width: 4px;
   height: 4px;
+}
+
+.satellite-layer .leaflet-control-layers-selector:after {
+  border: 1px solid rgba(120,116,113,1);
 }
 
 .leaflet-control-layers-selector:checked:after {
