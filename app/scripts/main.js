@@ -8,7 +8,6 @@ var map = L.map('map', {
 
 new L.Control.Zoom({position: 'topright'}).addTo(map);
 
-
 var baseLayers = {
   'Road Map': L.tileLayer('http://a.tiles.mapbox.com/v4/adammulligan.f826072c/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWRhbW11bGxpZ2FuIiwiYSI6ImNiMDYxMzkwOGJjYTJjZjhmZmY3YmUyZTljMDZjZGNjIn0.E30Oy7L6hXBm2vtmQoWZJA').addTo(map),
   'Satellite': L.tileLayer('http://a.tiles.mapbox.com/v4/adammulligan.m8ei7b99/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWRhbW11bGxpZ2FuIiwiYSI6ImNiMDYxMzkwOGJjYTJjZjhmZmY3YmUyZTljMDZjZGNjIn0.E30Oy7L6hXBm2vtmQoWZJA')
@@ -32,7 +31,7 @@ LAYERS_CONFIG.basemaps.forEach(function(layerConfig, index) {
   groupedOverlays.base[layerConfig[2]] = layer;
 });
 
-L.control.groupedLayers(baseLayers, groupedOverlays, {
+L.control.customLayers(baseLayers, groupedOverlays, {
   exclusiveGroups: ["base"],
   position: 'topleft',
   collapsed: false
