@@ -9,7 +9,7 @@
 }
 
 .leaflet-left .leaflet-control {
-  margin-left: -12px;
+  margin-left: 5px;
   margin-top: 70px;
   padding: 0;
 }
@@ -35,6 +35,13 @@
 
 .leaflet-bar a:last-child {
   border-bottom: none;
+}
+
+.leaflet-control-layers-list {
+  background-color: rgb(237,237,237);
+  width: 200px;
+  padding-right: 27px;
+  opacity: 0.9;
 }
 
 .leaflet-control-layers-expanded {
@@ -74,7 +81,7 @@
 
 .leaflet-control-layers-selector ~ span {
   color: #000;
-  opacity: 0.3;
+  opacity: 0.6;
   text-shadow: 0 0 2px white;
 }
 
