@@ -32,14 +32,10 @@ LAYERS_CONFIG.basemaps.forEach(function(layerConfig, index) {
   groupedOverlays.base[layerConfig[2]] = layer;
 });
 
-// Use the custom grouped layer control, not "L.control.layers"
 L.control.groupedLayers(baseLayers, groupedOverlays, {
   exclusiveGroups: ["base"],
   position: 'topleft',
   collapsed: false
 }).addTo(map);
-
-//var layerControl = new L.Control.Layers(baseMaps, malariaLayers, {position: 'topleft', collapsed: false});
-//layerControl.addTo(map);
 
 })();
