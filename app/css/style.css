@@ -1,3 +1,7 @@
+* {
+  font-family: 'Bebas Neue', Helvetica, Arial, sans-serif !important;
+}
+
 #map {
   position: absolute;
   height: 100%;
@@ -9,7 +13,6 @@
 }
 
 h1 {
-  font-family: 'akzidenz', Helvetica, Arial, sans-serif;
   font-size: 60px;
   color: rgba(178, 18, 13, 0.9);
   text-rendering: optimizeLegibility;
