@@ -30,7 +30,6 @@ h1 {
 
 .overlay {
   pointer-events: none;
-  background: url(../img/paper-tile.png) repeat;
   position: absolute;
   left: 0;
   top: 0;
