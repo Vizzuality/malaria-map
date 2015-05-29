@@ -29,13 +29,46 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
 
       if (input.checked && !this._map.hasLayer(obj.layer)) {
         this._map.addLayer(obj.layer);
-
+        this._renderLegend(obj, input.parentNode);
       } else if (!input.checked && this._map.hasLayer(obj.layer)) {
         this._map.removeLayer(obj.layer);
+        this._removeLegend(obj, input.parentNode);
       }
     }
 
     this._handlingClick = false;
+  },
+
+  _removeLegend: function(obj, container) {
+    var legendConfig = LEGEND_CONFIG[obj.name];
+    if (legendConfig === undefined) { return; }
+
+    container.removeChild(container.lastChild);
+  },
+
+  _renderLegend: function(obj, container) {
+    var legendConfig = LEGEND_CONFIG[obj.name];
+    if (legendConfig === undefined) { return; }
+
+    var legend = document.createElement('ul');
+    legend.className = "malaria-legend";
+
+    var i = 0;
+    for (; i < 5; i++) {
+      var value = legendConfig[i];
+      var element = document.createElement('li');
+
+      var textElement = document.createElement('span');
+      textElement.innerHTML = value;
+      element.appendChild(textElement);
+
+      var className = obj.name.toLowerCase().replace(/\s+/g,"");
+      element.className = className + " m" + (i+1);
+
+      legend.appendChild(element);
+    }
+
+    container.appendChild(legend);
   },
 
 	_addItem: function (obj) {

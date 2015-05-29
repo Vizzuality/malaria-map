@@ -1,0 +1,121 @@
+.malaria-legend {
+  list-style-type: none;
+  margin-left: 17px;
+}
+
+.malaria-legend li {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+
+  opacity: 1;
+  font-size: 13px;
+  color: #000000;
+  letter-spacing: 0.69px;
+  text-shadow: 0px 0px 4px #FFFFFF;
+}
+
+
+.malaria-legend li span {
+  opacity: 0.5;
+}
+
+.lst.m1 {
+  background-color: #EEB429;
+}
+
+.lst.m2 {
+  background-color: #EAD38D;
+}
+
+.lst.m3 {
+  background-color: #E8EAE5;
+}
+
+.lst.m4 {
+  background-color: #BEC4EA;
+}
+
+.lst.m5 {
+  background-color: #8592EE;
+}
+
+.ndvi.m1 {
+  background-color: #BC8B55;
+}
+
+.ndvi.m2 {
+  background-color: #D6C4AA;
+}
+
+.ndvi.m3 {
+  background-color: #E8EAE5;
+}
+
+.ndvi.m4 {
+  background-color: #BDCEE8;
+}
+
+.ndvi.m5 {
+  background-color: #85AAEA;
+}
+
+.ndwi.m1 {
+  background-color: #BC8B55;
+}
+
+.ndwi.m2 {
+  background-color: #E8EAE5;
+}
+
+.ndwi.m3 {
+  background-color: #BFD9B8;
+}
+
+.ndwi.m4 {
+  background-color: #82C075;
+}
+
+.ndwi.m5 {
+  background-color: #59AE49;
+}
+
+.elevation.m1 {
+  background-color: #AE9765;
+}
+
+.elevation.m2 {
+  background-color: #CFC7AE;
+}
+
+.elevation.m3 {
+  background-color: #E8EAE5;
+}
+
+.elevation.m4 {
+  background-color: #C5D1BD;
+}
+
+.elevation.m5 {
+  background-color: #739B5F;
+}
+
+.waterbodiesdistance.m1 {
+  background-color: #19A0AC;
+}
+
+.waterbodiesdistance.m2 {
+  background-color: #4CB6BD;
+}
+
+.waterbodiesdistance.m3 {
+  background-color: #8ECBCE;
+}
+
+.waterbodiesdistance.m4 {
+  background-color: #BBDBDA;
+}
+
+.waterbodiesdistance.m5 {
+  background-color: #E8EAE5;
+}

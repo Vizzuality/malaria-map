@@ -8,7 +8,15 @@ window.LAYERS_CONFIG = {
   ],
   overlays: [
     [ "1f9e376fde9c9eb96b798dc5ca77e55c", "244f805fd1471972c9202545e6c2bf60", "Malaria Risk (Resampled)", 0, 1 ],
-    [ "f1c38c3e4c63504e5d2152c0cd125e9d", "9754a8d83df1520af9d1ed5ee275ead9", "Malaria Risk ", 0, 1 ],
+    [ "f1c38c3e4c63504e5d2152c0cd125e9d", "9754a8d83df1520af9d1ed5ee275ead9", "Malaria Risk", 0, 1 ],
     [ "e2fd560149c2a8d062a54e7d24c1d4ee", "303154d4850255f3247d3ec5513496cd", "Water Bodies Hansen", 0, 1 ]
   ]
+};
+
+window.LEGEND_CONFIG = {
+  "LST": [1,2,3,4,5],
+  "NDVI": [1,2,3,4,5],
+  "NDWI": [1,2,3,4,5],
+  "Elevation": [1,2,3,4,5],
+  "Water Bodies Distance": [1,2,3,4,5]
 };

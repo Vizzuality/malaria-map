@@ -69,10 +69,6 @@
   display: none;
 }
 
-.leaflet-control-layers-expanded label{
-  margin-top: -10px;
-}
-
 .leaflet-control-layers-expanded label span:hover {
   color: #AC2641;
   cursor: pointer;
