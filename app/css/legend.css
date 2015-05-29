@@ -1,6 +1,7 @@
 .malaria-legend {
   list-style-type: none;
   margin-left: 17px;
+  width: 100%;
 }
 
 .malaria-legend li {

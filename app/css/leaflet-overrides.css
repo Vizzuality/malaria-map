@@ -37,6 +37,15 @@
   border-bottom: none;
 }
 
+.leaflet-control-layers {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .leaflet-control-layers-list {
   background-color: rgb(237,237,237);
   width: 200px;
@@ -59,7 +68,7 @@
 .leaflet-control-layers-group-name {
   height: 0;
   border-top: 1px solid #ddd;
-  margin: 5px 0 15px 17px;
+  margin: 15px 0 15px 17px;
   width: 100%;
   display: block;
   overflow: hidden;
@@ -67,6 +76,10 @@
 
 .leaflet-control-layers-separator {
   display: none;
+}
+
+.leaflet-control-layers label {
+  line-height: 20px;
 }
 
 .leaflet-control-layers-expanded label span:hover {
