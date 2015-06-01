@@ -59,7 +59,7 @@ async.parallel([
   }).addTo(map);
 
   // Map labels
-  L.tileLayer("http://a.tiles.mapbox.com/v4/aliciarenzana.mb98fkk8/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxpY2lhcmVuemFuYSIsImEiOiJjOTQ2OThkM2VkY2I5MjYwNTUyNmIyMmEyZWFmOGZjMyJ9.sa4f1HalXYr3GYTRAsdnzA")
+  L.tileLayer("http://a.tiles.mapbox.com/v4/aliciarenzana.mb99h2am/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxpY2lhcmVuemFuYSIsImEiOiJjOTQ2OThkM2VkY2I5MjYwNTUyNmIyMmEyZWFmOGZjMyJ9.sa4f1HalXYr3GYTRAsdnzA")
     .addTo(map)
     .setZIndex(9999);
 
