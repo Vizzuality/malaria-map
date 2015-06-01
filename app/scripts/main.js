@@ -1,6 +1,6 @@
 (function() {
 
-var map = L.map('map', { center: [-26.5738, 31.5335], zoom: 9, zoomControl: false });
+var map = L.map('map', { center: [-26.5824, 31.0226], zoom: 9, zoomControl: false });
 new L.Control.Zoom({position: 'topright'}).addTo(map);
 
 var baseLayers = {
@@ -27,6 +27,9 @@ var createBaseLayers = function() {
   LAYERS_CONFIG.basemaps.forEach(function(layerConfig, index) {
     var layer = L.tileLayer('https://earthengine.googleapis.com/map/'+layerConfig[0]+'/{z}/{x}/{y}?token='+layerConfig[1])
     groupedOverlays.base[layerConfig[2]] = layer;
+
+    // Set first layer as default
+    if (index === 0) { layer.addTo(map); }
   });
 };
 
@@ -63,7 +66,7 @@ async.parallel([
   // Swaziland outline
   cartodb.createLayer(map, "https://simbiotica.cartodb.com/api/v2/viz/77f88568-0862-11e5-9da9-0e9d821ea90d/viz.json")
     .addTo(map)
-    .on('done', function(layer) { layer.setZIndex(9999); });
+    .on('done', function(layer) { layer.setZIndex(9998); });
 });
 
 })();

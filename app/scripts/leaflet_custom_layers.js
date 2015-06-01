@@ -6,17 +6,6 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
 
     this._handlingClick = true;
 
-    if (this.currentInput && this.currentInput.type === 'radio') {
-      if (this.currentInput == arguments[0].currentTarget) {
-        this.currentInput.checked = false;
-        this.currentInput = null;
-      } else {
-        this.currentInput = arguments[0].currentTarget;
-      }
-    } else {
-        this.currentInput = arguments[0].currentTarget;
-    }
-
     if (arguments[0].currentTarget.id === "Satellite") {
       map.className = map.className + " satellite-layer";
     } else {
