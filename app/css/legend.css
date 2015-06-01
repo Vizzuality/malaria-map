@@ -42,43 +42,43 @@
   background-color: #8592EE;
 }
 
-.ndvi.m1 {
-  background-color: #BC8B55;
-}
-
-.ndvi.m2 {
-  background-color: #D6C4AA;
-}
-
-.ndvi.m3 {
-  background-color: #E8EAE5;
-}
-
-.ndvi.m4 {
-  background-color: #BDCEE8;
-}
-
-.ndvi.m5 {
-  background-color: #85AAEA;
-}
-
 .ndwi.m1 {
   background-color: #BC8B55;
 }
 
 .ndwi.m2 {
-  background-color: #E8EAE5;
+  background-color: #D6C4AA;
 }
 
 .ndwi.m3 {
-  background-color: #BFD9B8;
+  background-color: #E8EAE5;
 }
 
 .ndwi.m4 {
-  background-color: #82C075;
+  background-color: #BDCEE8;
 }
 
 .ndwi.m5 {
+  background-color: #85AAEA;
+}
+
+.ndvi.m1 {
+  background-color: #BC8B55;
+}
+
+.ndvi.m2 {
+  background-color: #E8EAE5;
+}
+
+.ndvi.m3 {
+  background-color: #BFD9B8;
+}
+
+.ndvi.m4 {
+  background-color: #82C075;
+}
+
+.ndvi.m5 {
   background-color: #59AE49;
 }
 
