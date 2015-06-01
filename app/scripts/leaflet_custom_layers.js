@@ -22,12 +22,6 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
         this.currentInput = arguments[0].currentTarget;
     }
 
-    if (arguments[0].currentTarget.id === "Satellite") {
-      map.className = map.className + " satellite-layer";
-    } else if (arguments[0].currentTarget.id === "Road Map") {
-      map.className = map.className.replace(/\bsatellite-layer\b/,'');
-    }
-
     for (i = 0; i < inputsLen; i++) {
       input = inputs[i];
       obj = this._layers[input.layerId];
