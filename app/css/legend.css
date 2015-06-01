@@ -17,6 +17,11 @@
   text-shadow: 0px 0px 4px #FFFFFF;
 }
 
+.leaflet-control-layers-expanded label .malaria-legend li span:hover {
+  color: #000;
+  cursor: auto;
+  opacity: 0.5;
+}
 
 .malaria-legend li span {
   opacity: 0.5;
@@ -124,7 +129,10 @@
 
 .malaria-legend li.malariarisk span,
 .malaria-legend li.malariariskresampled span,
-.malaria-legend li.casedata span {
+.malaria-legend li.casedata span,
+.leaflet-control-layers-expanded label .malaria-legend li.casedata span:hover,
+.leaflet-control-layers-expanded label .malaria-legend li.malariariskresampled span:hover,
+.leaflet-control-layers-expanded label .malaria-legend li.malariarisk span:hover {
   color: white;
   opacity: 1;
   text-shadow: none;
