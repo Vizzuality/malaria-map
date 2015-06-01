@@ -43,15 +43,23 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
     var legendConfig = LEGEND_CONFIG[obj.name];
     if (legendConfig === undefined) { return; }
 
-    container.removeChild(container.lastChild);
+    var id = obj.name.toLowerCase().replace(/\s+|\(|\)/g,"");
+    var element = document.getElementById(id);
+
+    if (element != undefined) {
+      container.removeChild(element);
+    }
   },
 
   _renderLegend: function(obj, container) {
     var legendConfig = LEGEND_CONFIG[obj.name];
-    if (legendConfig === undefined) { return; }
+    if (legendConfig === undefined || container == undefined) { return; }
 
     var legend = document.createElement('ul');
     legend.className = "malaria-legend";
+
+    var id = obj.name.toLowerCase().replace(/\s+|\(|\)/g,"");
+    legend.id = id;
 
     var i = 0;
     for (; i < legendConfig.length; i++) {
@@ -61,9 +69,7 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
       var textElement = document.createElement('span');
       textElement.innerHTML = value;
       element.appendChild(textElement);
-
-      var className = obj.name.toLowerCase().replace(/\s+|\(|\)/g,"");
-      element.className = className + " m" + (i+1);
+      element.className = id + " m" + (i+1);
 
       legend.appendChild(element);
     }
@@ -101,6 +107,10 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
 
       label.appendChild(input);
       label.appendChild(name);
+
+      if (input.checked === true) {
+        this._renderLegend(obj, input.parentNode);
+      }
 
       if (obj.overlay) {
         container = this._overlaysList;
