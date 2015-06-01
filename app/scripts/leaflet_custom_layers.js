@@ -6,9 +6,25 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
 
     this._handlingClick = true;
 
+
+    // Layers that can't be deselected (basemaps)
+    var notDeselectable = ['Road Map', 'Satellite'];
+    if (this.currentInput &&
+        this.currentInput.type === 'radio' &&
+        notDeselectable.indexOf(this.currentInput.id) < 0) {
+      if (this.currentInput == arguments[0].currentTarget) {
+        this.currentInput.checked = false;
+        this.currentInput = null;
+      } else {
+        this.currentInput = arguments[0].currentTarget;
+      }
+    } else {
+        this.currentInput = arguments[0].currentTarget;
+    }
+
     if (arguments[0].currentTarget.id === "Satellite") {
       map.className = map.className + " satellite-layer";
-    } else {
+    } else if (arguments[0].currentTarget.id === "Road Map") {
       map.className = map.className.replace(/\bsatellite-layer\b/,'');
     }
 
