@@ -19,6 +19,6 @@ window.LEGEND_CONFIG = {
   "NDWI": [-0.2, -0.1, 0, 0.4, 0.5],
   "Elevation": [0, "0.1-0.2", "0.2-0.4", "0.4-0.6", "0.8-1"],
   "Water Bodies Distance": [0, 20, 50, 100, 120],
-  "Malaria Risk": [0, "0.1-0.2", "0.2-0.4", "0.4-0.6", "0.8-1"],
-  "Malaria Risk (Resampled)": [0, "0.1-0.2", "0.2-0.4", "0.4-0.6", "0.8-1"]
+  "Malaria Risk": [0.5, 1],
+  "Malaria Risk (Resampled)": [0.5, 1]
 };

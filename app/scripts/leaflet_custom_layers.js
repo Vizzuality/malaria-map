@@ -54,7 +54,7 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
     legend.className = "malaria-legend";
 
     var i = 0;
-    for (; i < 5; i++) {
+    for (; i < legendConfig.length; i++) {
       var value = legendConfig[i];
       var element = document.createElement('li');
 
@@ -62,7 +62,7 @@ L.Control.CustomLayers = L.Control.GroupedLayers.extend({
       textElement.innerHTML = value;
       element.appendChild(textElement);
 
-      var className = obj.name.toLowerCase().replace(/\s+/g,"");
+      var className = obj.name.toLowerCase().replace(/\s+|\(|\)/g,"");
       element.className = className + " m" + (i+1);
 
       legend.appendChild(element);

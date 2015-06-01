@@ -120,3 +120,20 @@
 .waterbodiesdistance.m5 {
   background-color: #E8EAE5;
 }
+
+.malaria-legend li.malariarisk span,
+.malaria-legend li.malariariskresampled span {
+  color: white;
+  opacity: 1;
+  text-shadow: none;
+}
+
+.malariarisk.m1,
+.malariariskresampled.m1 {
+  background-color: #A91005;
+}
+
+.malariarisk.m2,
+.malariariskresampled.m2 {
+  background-color: #000;
+}
