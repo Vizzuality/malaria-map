@@ -56,7 +56,9 @@ async.parallel([
   }).addTo(map);
 
   // Map labels
-  L.tileLayer("http://a.tiles.mapbox.com/v4/aliciarenzana.mb8kijd7/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxpY2lhcmVuemFuYSIsImEiOiJjOTQ2OThkM2VkY2I5MjYwNTUyNmIyMmEyZWFmOGZjMyJ9.sa4f1HalXYr3GYTRAsdnzA").addTo(map).bringToFront();
+  L.tileLayer("http://a.tiles.mapbox.com/v4/aliciarenzana.mb8kijd7/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxpY2lhcmVuemFuYSIsImEiOiJjOTQ2OThkM2VkY2I5MjYwNTUyNmIyMmEyZWFmOGZjMyJ9.sa4f1HalXYr3GYTRAsdnzA")
+    .addTo(map)
+    .setZIndex(9999);
 
   // Swaziland outline
   cartodb.createLayer(map, "https://simbiotica.cartodb.com/api/v2/viz/77f88568-0862-11e5-9da9-0e9d821ea90d/viz.json")
