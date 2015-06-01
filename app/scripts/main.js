@@ -1,11 +1,6 @@
 (function() {
 
-var map = L.map('map', {
-  center: [-26.5738, 31.5335],
-  zoom: 9,
-  zoomControl: false
-});
-
+var map = L.map('map', { center: [-26.5738, 31.5335], zoom: 9, zoomControl: false });
 new L.Control.Zoom({position: 'topright'}).addTo(map);
 
 var baseLayers = {
@@ -28,6 +23,13 @@ var createRiskLayers = function() {
   });
 };
 
+var createBaseLayers = function() {
+  LAYERS_CONFIG.basemaps.forEach(function(layerConfig, index) {
+    var layer = L.tileLayer('https://earthengine.googleapis.com/map/'+layerConfig[0]+'/{z}/{x}/{y}?token='+layerConfig[1])
+    groupedOverlays.base[layerConfig[2]] = layer;
+  });
+};
+
 var createCartoLayer = function(name, url) {
   return function(callback) {
     cartodb.createLayer(map, url)
@@ -41,14 +43,10 @@ async.parallel([
   createCartoLayer("Case Data", "https://simbiotica.cartodb.com/api/v2/viz/deb87ad2-084a-11e5-aead-0e0c41326911/viz.json"),
   createCartoLayer("Cities in Danger", "https://simbiotica.cartodb.com/api/v2/viz/81ede332-084a-11e5-aaa3-0e0c41326911/viz.json")
 ], function(err, results) {
+  createBaseLayers();
   createRiskLayers();
   results.forEach( function(result) {
     groupedOverlays.risk[result.name] = result.layer;
-  });
-
-  LAYERS_CONFIG.basemaps.forEach(function(layerConfig, index) {
-    var layer = L.tileLayer('https://earthengine.googleapis.com/map/'+layerConfig[0]+'/{z}/{x}/{y}?token='+layerConfig[1])
-    groupedOverlays.base[layerConfig[2]] = layer;
   });
 
   L.control.customLayers(baseLayers, groupedOverlays, {
