@@ -1,15 +1,15 @@
 window.LAYERS_CONFIG = {
   basemaps: [
-    [ "01566ece98bddfdf2f629926883b1102", "62dd22ae6163fe505703db8e47a731a8", "Elevation", 0, 2000 ],
-    [ "6e4809beb567801c00d6cdfd6f3fd9d0", "a65a48ee541ed8850e1c7b9e79419f8e", "Water Bodies Distance", 0, 120 ],
-    [ "d3a982a78ab9c886dd7acd46a1f9fad8", "a74edf0dd1444df596203217694c051b", "NDVI", 0, 1 ],
-    [ "a3fd105200b6d127e8e917b463677cb1", "2034d9b8ca8eae46befddaf69ea49e60", "NDWI", -0.2, 0.5 ],
-    [ "fbf6f68f4502e9ed90deef7b18890d23", "6b5eaaa9f1389f4aca280ef19dfbde69", "LST", 24, 32 ]
+    [ "b0d119463ffef91eb27c9e28eb02ea2d", "fe63453f305c313802ffb0397d6b3d8d", "Elevation", 0, 2000 ],
+    [ "c590aa09251b50cacb404c3581a97415", "4c817373f6dc686a63a4ddac49dc0ab6", "Water Bodies Distance", 0, 120 ],
+    [ "ac6a74678241980b1f086eefff0417b9", "29ec5ddc6e159da253f0d3cc5f7a9cea", "NDVI", 0, 1 ],
+    [ "e0374a601d9d441704ff2ec33e635971", "7392363d051e1bde3c0147f1ab1de56a", "NDWI", -0.2, 0.5 ],
+    [ "1773d9b596f153c61a27e453824b486a", "910f171ce487159d651942fa349f3124", "LST", 24, 32 ]
   ],
   overlays: [
-    [ "c5c07972aff5a08cb39c31323ecfafe8", "42058d827fa0c581037ef985ce545060", "Malaria Risk (Resampled)", 0, 1 ],
-    [ "6aed9776d4e0cde77c6fbe8bd66999b9", "4ea9bf377604c63e01f72c06b0c08eb8", "Malaria Risk", 0, 1 ],
-    [ "ebabb7f712fddf4c684c04bc42208f9c", "c3a05998c079f6e9a194918ed84ab9f4", "Water Bodies Hansen", 0, 1 ]
+    [ "be59590f33d7322919fc6630a0b43bcf", "18b3c6b1863e0113992ead9f8562c9dc", 0, 1 ],
+    [ "110b9fca1fdf756f3c27b846eeb2be0e", "3123b27b1ab7aebfdb9fb157691e4a31", "Malaria Risk", 0, 1 ],
+    [ "2c77ff1333535698d602dd592dee9797", "2b89092e5f298aeb43024828899a7343", "Water Bodies Hansen", 0, 1 ]
   ]
 };
 
