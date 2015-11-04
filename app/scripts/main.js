@@ -238,9 +238,6 @@
     var LST_new = lstcollection.map(LST_Res);
     //print(LST_new.getInfo());
 
-
-
-
     //Topographic variables
     var elev = ee.Image('CGIAR/SRTM90_V4').clip(Swaziland);
 
@@ -312,7 +309,7 @@
                   //Distance to water
 
     //addToMap(dist_water.sldStyle(dist_to_water),{},"Distance_Water Bodies");
-    layers_config.basemaps[1] =get_idmap(dist_water.sldStyle(dist_to_water),{},"Distance_Water Bodies");
+    layers_config.basemaps[1] =get_idmap(dist_water.sldStyle(dist_to_water),{},"Distance to Water Bodies");
     layers_config.basemaps[1][3]=0
     layers_config.basemaps[1][4]=0
 
