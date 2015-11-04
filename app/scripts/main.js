@@ -1,6 +1,88 @@
 (function() {
-  var runAnalysis = function() {
+
+  'use strict';
+
+  var map;
+  var CLIENT_ID = '390573081381-gnqu230pbi1t7gmd04anqi39j81qsr0n' +
+    '.apps.googleusercontent.com';
+
+  // Run this when EE analysis is fetched
+  function checkTokens(layerConfig) {
+    var LAYERS_CONFIG = layerConfig;
+
+    var baseLayers = {
+      'Road Map': L.tileLayer('http://a.tiles.mapbox.com/v4/darkit.mb80h2ac/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZGFya2l0IiwiYSI6IkhtblZxN2MifQ.4Se0dQvGFVxnnCrzPkoz3g').addTo(map),
+      'Satellite': L.tileLayer('http://a.tiles.mapbox.com/v4/adammulligan.m8ei7b99/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWRhbW11bGxpZ2FuIiwiYSI6ImNiMDYxMzkwOGJjYTJjZjhmZmY3YmUyZTljMDZjZGNjIn0.E30Oy7L6hXBm2vtmQoWZJA')
+    };
+
+    var groupedOverlays = {
+      "base": {},
+      "risk": {}
+    }
+
+    var createRiskLayers = function() {
+      LAYERS_CONFIG.overlays.forEach(function(layerConfig, index) {
+        var layer = L.tileLayer('https://earthengine.googleapis.com/map/'+layerConfig[0]+'/{z}/{x}/{y}?token='+layerConfig[1])
+        groupedOverlays.risk[layerConfig[2]] = layer;
+
+        // Set first layer as default
+        if (index === 0) { layer.addTo(map); }
+      });
+    };
+
+    var createBaseLayers = function() {
+      LAYERS_CONFIG.basemaps.forEach(function(layerConfig, index) {
+        var layer = L.tileLayer('https://earthengine.googleapis.com/map/'+layerConfig[0]+'/{z}/{x}/{y}?token='+layerConfig[1])
+        groupedOverlays.base[layerConfig[2]] = layer;
+
+        // Set first layer as default
+        if (index === 0) { layer.addTo(map); }
+      });
+    };
+
+    var createCartoLayer = function(name, url) {
+      return function(callback) {
+        cartodb.createLayer(map, url)
+          .on('done', function(layer) {
+            callback(null, {name: name, layer: layer});
+          });
+      };
+    };
+
+    async.parallel([
+      createCartoLayer("Case Data", "https://simbiotica.cartodb.com/api/v2/viz/deb87ad2-084a-11e5-aead-0e0c41326911/viz.json"),
+      createCartoLayer("Cities in Danger", "https://simbiotica.cartodb.com/api/v2/viz/81ede332-084a-11e5-aaa3-0e0c41326911/viz.json")
+    ], function(err, results) {
+      createBaseLayers();
+      createRiskLayers();
+      results.forEach( function(result) {
+        groupedOverlays.risk[result.name] = result.layer;
+      });
+
+      L.control.customLayers(baseLayers, groupedOverlays, {
+        exclusiveGroups: ["base"],
+        position: 'topleft',
+        collapsed: false
+      }).addTo(map);
+
+      // Map labels
+      L.tileLayer("http://a.tiles.mapbox.com/v4/aliciarenzana.mb99h2am/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxpY2lhcmVuemFuYSIsImEiOiJjOTQ2OThkM2VkY2I5MjYwNTUyNmIyMmEyZWFmOGZjMyJ9.sa4f1HalXYr3GYTRAsdnzA")
+        .addTo(map)
+        .setZIndex(9999);
+
+      // Swaziland outline
+      cartodb.createLayer(map, "https://simbiotica.cartodb.com/api/v2/viz/77f88568-0862-11e5-9da9-0e9d821ea90d/viz.json")
+        .addTo(map)
+        .on('done', function(layer) { layer.setZIndex(9998); });
+    });
+  }
+
+  // Runs the EE analysis
+  function runAnalysis() {
+    console.info('running...');
+
     ee.initialize();
+
     var NDVI_PALETTE = '\
     <RasterSymbolizer>\
       <ColorMap bands="NDVI" type="intervals" extended="false" >\
@@ -15,7 +97,7 @@
 
     var EVI_PALETTE = 'FFFFFF, CE7E45, DF923D, F1B555, FCD163, 99B718, 74A901, 66A000, 529400,' +
         '3E8601, 207401, 056201, 004C00, 023B01, 012E01, 011D01, 011301'
-     
+
     var NDWI_PALETTE = '\
     <RasterSymbolizer>\
       <ColorMap bands="NDWI" type="ramp" extended="false" >\
@@ -70,7 +152,7 @@
     </RasterSymbolizer>';
 
                                           //distance to Water - Ramp
-                                          
+
     var dist_to_water ='\
     <RasterSymbolizer>\
       <ColorMap  type="intervals" extended="false" >\
@@ -83,7 +165,7 @@
     </RasterSymbolizer>';
 
                                           //SLD - Discrete Intervals
-                                          
+
     var sld_intervals = '\
     <RasterSymbolizer>\
       <ColorMap  type="intervals" extended="false" >\
@@ -114,8 +196,8 @@
     //addToMap(Swaziland, {'color': 'FF0000'});
     //Map.setCenter(32, -26, 8);
 
-    //Environmental variables  
-    var ndvicollection = ee.ImageCollection('LANDSAT/LC8_L1T_8DAY_NDVI').filterDate('2014-01-01', '2014-10-30'); 
+    //Environmental variables
+    var ndvicollection = ee.ImageCollection('LANDSAT/LC8_L1T_8DAY_NDVI').filterDate('2014-01-01', '2014-10-30');
     var evicollection = ee.ImageCollection('LANDSAT/LC8_L1T_8DAY_EVI').filterDate('2014-01-01', '2014-10-30');
     var lstcollection = ee.ImageCollection('MODIS/MOD11A2').filterDate('2014-01-01', '2014-10-30').select("LST_Day_1km");
     var ndwicollection = ee.ImageCollection('LANDSAT/LE7_L1T_8DAY_NDWI').filterDate('2014-01-01', '2014-10-30');
@@ -171,7 +253,7 @@
     var water = ee.Image('UMD/hansen/global_forest_change_2013').select('datamask').eq(2).clip(Swaziland);
 
 
-    //Compute distance to water bodies 
+    //Compute distance to water bodies
     var pixels = ee.Kernel.euclidean(120, "pixels");
     var dist_water = water.distance(pixels);
 
@@ -182,7 +264,7 @@
     //print(evi.getInfo());
     var ndwi = ndwicollection.median().clip(Swaziland);
     //print(ndwi.getInfo());
-    var lst = LST_new.select("LST_Day_1km_1").median().clip(Swaziland); 
+    var lst = LST_new.select("LST_Day_1km_1").median().clip(Swaziland);
     //print(lst.getInfo());
 
     //Combine environmental variables to prepare for the Random Forests model
@@ -194,10 +276,10 @@
     var Case = cases.filter(ee.Filter.eq('Case', 1));
     var display1 = Case.draw('FF0000', 2, 2);
     var Control = cases.filter(ee.Filter.eq('Case', 0));
-    var display2 = Control.draw('00FF00', 2, 2); 
+    var display2 = Control.draw('00FF00', 2, 2);
     var proj = ee.Projection('EPSG:4326').atScale(30);
     // Train the classifier with specified inputs.
-    var scale = 30 / 111320; 
+    var scale = 30 / 111320;
     var classifier = combined.trainClassifier({
     "bands":["elevation","NDWI"],
     "classifier_name": "RifleSerialClassifier",
@@ -211,7 +293,7 @@
     // Apply the trained classifier by calling classify() on the image.
     var out = combined.classify(classifier);
 
-    //Risk Map based on model prediction 
+    //Risk Map based on model prediction
 
     var RiskNeighbors = out.focal_median(1.5);
 
@@ -219,7 +301,7 @@
     //                                            Print the computed model
     //#################################################################################################################
     ////////////////////////////////////////////////////////////////////////////////
-                  //terrain variables, elev, slope.... 
+                  //terrain variables, elev, slope....
 
     //addToMap(elev.sldStyle(Elevation_PALETTE),{}, "Elevation");
     layers_config.basemaps[0] =get_idmap(elev.sldStyle(Elevation_PALETTE),{}, "Elevation");
@@ -235,7 +317,7 @@
     layers_config.basemaps[1][4]=0
 
     ////////////////////////////////////////////////////////////////////////////////
-                  //NDVI normalized difference vegetation index 
+                  //NDVI normalized difference vegetation index
 
     //addToMap(ndvi.sldStyle(NDVI_PALETTE),{}, "NDVI");
     layers_config.basemaps[2] =get_idmap(ndvi.sldStyle(NDVI_PALETTE),{}, "NDVI");
@@ -244,7 +326,7 @@
     //addToMap(evi, {min:-1, max:1, bands:["EVI"], "palette": EVI_PALETTE}, "EVI");
 
     ////////////////////////////////////////////////////////////////////////////////
-                  //NDWI normalized difference water index 
+                  //NDWI normalized difference water index
 
     //addToMap(ndwi.sldStyle(NDWI_PALETTE),{},"NDWI");
     layers_config.basemaps[3] =get_idmap(ndwi.sldStyle(NDWI_PALETTE),{},"NDWI");
@@ -261,11 +343,11 @@
 
 
     ////////////////////////////////////////////////////////////////////////////////
-                 // Map the model result Resampled 
-                 
+                 // Map the model result Resampled
+
     //addToMap(out, {min:0, max:1, palette: ["0000FF", "66FFCC", "FFCC00", "00CCFF", "FF0000"]}, "Model Random Forest");
     //addToMap(out, {min:0, max:1, palette: ["0000CC", "0075CC", "00CCAF", "FFE300", "CC7500", "CC0000"]}, "Model Random Forest");
-    addToMap(RiskNeighbors.sldStyle(sld_intervals), {}, 'Malaria Risk Map Resampled');
+    // addToMap(RiskNeighbors.sldStyle(sld_intervals), {}, 'Malaria Risk Map Resampled');
 
     layers_config.overlays[0] =get_idmap(RiskNeighbors.sldStyle(sld_intervals), {}, 'Malaria Risk Map Resampled');
     layers_config.overlays[0][3]=0
@@ -273,7 +355,7 @@
     //print(RiskNeighbors.sldStyle(sld_intervals).getMap(),'test')
 
     ////////////////////////////////////////////////////////////////////////////////
-                 // Map the model result 
+                 // Map the model result
     //addToMap(out, {}, 'Malaria Risk Map');
     //addToMap(out.sldStyle(sld_intervals), {}, 'Malaria Risk Map1');
 
@@ -288,80 +370,33 @@
     layers_config.overlays[2][3]=0;
     layers_config.overlays[2][4]=1;
 
-  return layers_config
-};
-var CLIENT_ID = '390573081381-gnqu230pbi1t7gmd04anqi39j81qsr0n.apps.googleusercontent.com';
-ee.data.authenticate(CLIENT_ID, runAnalysis);
-var LAYERS_CONFIG = runAnalysis;
-console.log(ee.data.authenticate(CLIENT_ID, runAnalysis));
-console.log(runAnalysis);
+    checkTokens(layers_config);
 
-var map = L.map('map', { center: [-26.5824, 31.0226], zoom: 9, zoomControl: false });
-new L.Control.Zoom({position: 'topright'}).addTo(map);
+    return layers_config;
+  }
 
-var baseLayers = {
-  'Road Map': L.tileLayer('http://a.tiles.mapbox.com/v4/darkit.mb80h2ac/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZGFya2l0IiwiYSI6IkhtblZxN2MifQ.4Se0dQvGFVxnnCrzPkoz3g').addTo(map),
-  'Satellite': L.tileLayer('http://a.tiles.mapbox.com/v4/adammulligan.m8ei7b99/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWRhbW11bGxpZ2FuIiwiYSI6ImNiMDYxMzkwOGJjYTJjZjhmZmY3YmUyZTljMDZjZGNjIn0.E30Oy7L6hXBm2vtmQoWZJA')
-};
+  // Shows a button prompting the user to log in.
+  function onImmediateFailed(e) {
+    // If the login is succeeds, run the analysis
+    ee.data.authenticateViaPopup(runAnalysis);
+  }
 
-var groupedOverlays = {
-  "base": {},
-  "risk": {}
-}
+  // Start application when DOM is ready
+  function onReady() {
+    var controlZoom = new L.Control.Zoom({ position: 'topright' });
 
-var createRiskLayers = function() {
-  LAYERS_CONFIG.overlays.forEach(function(layerConfig, index) {
-    var layer = L.tileLayer('https://earthengine.googleapis.com/map/'+layerConfig[0]+'/{z}/{x}/{y}?token='+layerConfig[1])
-    groupedOverlays.risk[layerConfig[2]] = layer;
+    // Creating map
+    map = L.map('map', {
+      center: [-26.5824, 31.0226],
+      zoom: 9, zoomControl: false
+    });
 
-    // Set first layer as default
-    if (index === 0) { layer.addTo(map); }
-  });
-};
+    controlZoom.addTo(map);
 
-var createBaseLayers = function() {
-  LAYERS_CONFIG.basemaps.forEach(function(layerConfig, index) {
-    var layer = L.tileLayer('https://earthengine.googleapis.com/map/'+layerConfig[0]+'/{z}/{x}/{y}?token='+layerConfig[1])
-    groupedOverlays.base[layerConfig[2]] = layer;
+    // Attempt to authenticate using existing credentials.
+    ee.data.authenticate(CLIENT_ID, runAnalysis, null, null, onImmediateFailed);
+  }
 
-    // Set first layer as default
-    if (index === 0) { layer.addTo(map); }
-  });
-};
+  document.addEventListener('DOMContentLoaded', onReady);
 
-var createCartoLayer = function(name, url) {
-  return function(callback) {
-    cartodb.createLayer(map, url)
-      .on('done', function(layer) {
-        callback(null, {name: name, layer: layer});
-      });
-  };
-};
-
-async.parallel([
-  createCartoLayer("Case Data", "https://simbiotica.cartodb.com/api/v2/viz/deb87ad2-084a-11e5-aead-0e0c41326911/viz.json"),
-  createCartoLayer("Cities in Danger", "https://simbiotica.cartodb.com/api/v2/viz/81ede332-084a-11e5-aaa3-0e0c41326911/viz.json")
-], function(err, results) {
-  createBaseLayers();
-  createRiskLayers();
-  results.forEach( function(result) {
-    groupedOverlays.risk[result.name] = result.layer;
-  });
-
-  L.control.customLayers(baseLayers, groupedOverlays, {
-    exclusiveGroups: ["base"],
-    position: 'topleft',
-    collapsed: false
-  }).addTo(map);
-
-  // Map labels
-  L.tileLayer("http://a.tiles.mapbox.com/v4/aliciarenzana.mb99h2am/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxpY2lhcmVuemFuYSIsImEiOiJjOTQ2OThkM2VkY2I5MjYwNTUyNmIyMmEyZWFmOGZjMyJ9.sa4f1HalXYr3GYTRAsdnzA")
-    .addTo(map)
-    .setZIndex(9999);
-
-  // Swaziland outline
-  cartodb.createLayer(map, "https://simbiotica.cartodb.com/api/v2/viz/77f88568-0862-11e5-9da9-0e9d821ea90d/viz.json")
-    .addTo(map)
-    .on('done', function(layer) { layer.setZIndex(9998); });
-});
 })();
