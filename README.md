@@ -1,5 +1,7 @@
 # Malaria Map
 Take a look at [the map](http://vizzuality.github.io/malaria-map/app/)
+
+
 Don't forget to log in with your Google Earth engine account!
 ## Development
 
