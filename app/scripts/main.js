@@ -66,7 +66,7 @@
       }).addTo(map);
 
       // Map labels
-      L.tileLayer("http://a.tiles.mapbox.com/v4/aliciarenzana.mb99h2am/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxpY2lhcmVuemFuYSIsImEiOiJjOTQ2OThkM2VkY2I5MjYwNTUyNmIyMmEyZWFmOGZjMyJ9.sa4f1HalXYr3GYTRAsdnzA")
+      L.tileLayer("http://a.tiles.mapbox.com/v4/aliarenzana.f5e8320c/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxpYXJlbnphbmEiLCJhIjoiY2lrZ28wMmRzMDBranV4a21vamtiYXBpaCJ9.qLMlhRj_FWz-T5weNam5-Q")
         .addTo(map)
         .setZIndex(9999);
 
